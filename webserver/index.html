@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8">
+  <title>Wait4Me</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
+<link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.css'><link rel="stylesheet" href="./style.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prefixfree/1.0.7/prefixfree.min.js"></script>
+
+</head>
+<body>
+<!-- partial:index.partial.html -->
+<div class="ct" id="t1">
+  <div class="ct" id="t2">
+    <div class="ct" id="t3">
+      <div class="ct" id="t4">
+         <div class="ct" id="t5">
+          <ul id="menu">
+            <a href="#t1"><li class="icon fa fa-plus-circle" id="uno"></li></a>
+            <a href="#t2"><li class="icon fa fa-plus-circle" id="dos"></li></a>
+            <a href="#t3"><li class="icon fa fa-plus-circle" id="tres"></li></a>
+            <a href="#t4"><li class="icon fa fa-plus-circle"id="cuatro"></li></a>
+            <a href="#t5"><li class="icon fa fa-plus-circle" id="cinco"></li></a>
+          </ul>
+          <div class="page" id="p1">
+             <section class="icon fa fa-plus-circle"><span class="title">Wait 4Me</span><span class="hint"><h1>Place in queue: <div class="place">None</div> </h1></span></section>  
+          </div>
+          <div class="page" id="p2">
+            <section class="icon fa fa-plus-circle"><span class="title">Eta</span><span class="hint"><h1>ETA: <div class="ETA">None</div> </h1> </span></section>
+          </div>  
+          <div class="page" id="p3">
+            <section class="icon fa fa-plus-circle"><span class="title">Password</span><span class="hint"><input type="password" class="password"><br></span></section>
+          </div>
+          <div class="page" id="p4">
+            <section class="icon fa fa-plus-circle">
+              <span class="title">Start</span><span class="hint"><button id="queueButton" class="start" onclick="start()">Start queuing</button></span>
+            </section>
+          </div> 
+          <div class="page" id="p5">
+            <section class="icon fa fa-plus-circle">
+              <span class="title">Requeue</span>
+              <p class="hint">
+                <span><input type="checkbox" class="restartQueue" onchange="toggleRestartQueue()"> Restart the queue if you're not connected at the end of it? (Recommended: ON)
+        </div></span><br/>
+               <script>
+            setInterval(() => { //each second, update the info.
+                
+                const xhr = new XMLHttpRequest();
+                xhr.open("GET", "update", true);
+                xhr.onreadystatechange = function() {
+                    if (this.readyState == 4 && this.status == 200) {
+                        if (place == 'undefined') {
+                            var place = "None"
+                        }        
+                        const response = JSON.parse(this.responseText);
+                        document.getElementsByClassName("place")[0].innerHTML = response.place;
+                        document.title = "WaitForMe - " + response.place;
+                        document.getElementsByClassName("ETA")[0].innerHTML = response.ETA;
+                        document.getElementsByClassName("restartQueue")[0].checked = response.restartQueue
+                        const queueButton = document.getElementById('queueButton');
+                        if(response.isInQueue){
+                            queueButton.innerHTML = "Stop queuing";
+                            queueButton.setAttribute('onclick', 'stop()');
+                            queueButton.className = 'stop';
+                        }else{
+                            queueButton.innerHTML = "Start queuing";
+                            queueButton.setAttribute('onclick', 'start()');
+                        queueButton.className = 'start';
+                        }
+                    }
+                }
+        
+
+                xhr.setRequestHeader('XPassword', document.getElementsByClassName('password')[0].value)
+                xhr.send();
+
+            }, 1000);
+            
+
+            function start() {
+                const xhr = new XMLHttpRequest();
+                xhr.open("GET", "start", true);
+                xhr.setRequestHeader('XPassword', document.getElementsByClassName('password')[0].value)
+                xhr.send();
+                const queueButton = document.getElementById('queueButton');
+                queueButton.innerHTML = "Stop queuing";
+                queueButton.setAttribute('onclick', 'stop()');
+                queueButton.setAttribute('onclick', 'stop()');
+                queueButton.className = 'stop';
+            }
+
+            function stop() {
+                if(!confirm("Are you sure you want to stop queuing?")) return;
+
+                const xhr = new XMLHttpRequest();
+                xhr.open("GET", "stop", true);
+                xhr.setRequestHeader('XPassword', document.getElementsByClassName('password')[0].value)
+                xhr.send();
+                const queueButton = document.getElementById('queueButton');
+                queueButton.innerHTML = "Start queuing";
+                queueButton.setAttribute('onclick', 'start()');
+                queueButton.className = 'start';
+                document.getElementsByClassName("place")[0].innerHTML = 'None';
+                document.getElementsByClassName("ETA")[0].innerHTML = 'None';
+            }
+
+            function toggleRestartQueue(){
+                const xhr = new XMLHttpRequest();
+                xhr.open("GET", "/togglerestart", true);
+                xhr.setRequestHeader('XPassword', document.getElementsByClassName('password')[0].value)
+                xhr.send();
+            }
+
+
+
+        </script> 
+              </p>
+            </section>
+          </div> 
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>

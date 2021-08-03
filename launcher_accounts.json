@@ -1,0 +1,23 @@
+{
+  "accounts": {
+    "f3483384ada8487f8c3a9515f8d17379": {
+      "accessToken": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxZjQyNTBjNzE1OTM0MjQyZWRhOWZjYmU3NWEwYzBkMSIsInlnZ3QiOiI1ZTA4ZTI5YzRmMmQ0MjA4OTFmOGEyMzNkYzk4YjM2NSIsInNwciI6ImJiOGM5YTBkN2JjMDQyNmRiNWIyYzQ3MmVmODc2MGVlIiwiaXNzIjoiWWdnZHJhc2lsLUF1dGgiLCJleHAiOjE2MjgxODAxMTEsImlhdCI6MTYyODAwNzMxMX0.g8iPogqXiRnY5O7ugei9WpN3j4ukhMEKgCrtODjVH4A",
+      "minecraftProfile": {
+        "id": "bb8c9a0d7bc0426db5b2c472ef8760ee",
+        "name": "distrustman"
+      },
+      "userProperites": [],
+      "username": "thin@thinmatrix.xyz"
+    },
+    "fc6707331ac449db8829db8d85399196": {
+      "accessToken": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJjM2UxZDAwNWI4YWEyZjA2ZWIzODJlOWU5OTI5YWRmMiIsInlnZ3QiOiJmN2E1YWJmY2Y2YmM0MDIwYjcyNTJlM2NmYjZkZjMyZiIsInNwciI6IjhiMDdlMTA3ZmM2NTRkNWM5MjgyOTQ0ZTRmODU0Yjc2IiwiaXNzIjoiWWdnZHJhc2lsLUF1dGgiLCJleHAiOjE2MjgxODAzNjYsImlhdCI6MTYyODAwNzU2Nn0.2zrsAK078uXSFNEdGLNUJXNFaZskFBw554-_OExhVBQ",
+      "minecraftProfile": {
+        "id": "8b07e107fc654d5c9282944e4f854b76",
+        "name": "z86"
+      },
+      "userProperites": [],
+      "username": "snowydogesmile@gmail.com"
+    }
+  },
+  "mojangClientToken": "2144da1fc2714f738dc2ae82d67e05ca"
+}
